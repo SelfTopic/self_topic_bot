@@ -3,7 +3,7 @@ import { Service } from "./base";
 
 
 export class SyncEntityService extends Service {
-
+    // Duplicated code, rethink and refactor it
     async sync(ctx: MyContext): Promise<boolean> {
         if (ctx.message?.from) {
             const user = ctx.message.from;

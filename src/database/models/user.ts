@@ -9,7 +9,7 @@ const User = pgTable('users', {
     first_name: text().notNull(),
     last_name: text(),
     username: text(),
-    balance: integer().notNull().default(0)
+    balance: integer().notNull().default(0) // do you use it?
 });
 
 export default User;

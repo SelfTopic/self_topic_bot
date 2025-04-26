@@ -2,7 +2,7 @@ import { User } from "grammy/types";
 import MyContext from "../context";
 
 
-class FindEntityService {
+class FindEntityService { // I recommend to change the name. Class is entity so it doesn't find something by itself
     ctx: MyContext
 
     constructor(ctx: MyContext) {
@@ -25,10 +25,10 @@ class FindEntityService {
 
         const messageEntites = ctx.message?.entities
 
-        if (!messageEntites || messageEntites?.length == 0)
+        if (!messageEntites?.length)
             return null;
 
-        const firstEntity = messageEntites[0]
+        const firstEntity = messageEntites[0];
 
         let user: User;
         if (firstEntity.type === "text_mention")
@@ -52,7 +52,7 @@ class FindEntityService {
 
         for (const word of words) {
             const parsedInt = parseInt(word);
-            if (!isNaN(parsedInt) && word.length >= 6) {
+            if (!isNaN(parsedInt) && word.length >= 6) { // 6 is magic number. Move it to variable to make the code more self-documented.
                 return parsedInt;
             }
         }
