@@ -59,6 +59,39 @@ class FindEntityService {
 
         return null;
     }
+
+    findUsernameOnMessage(ctx: MyContext = this.ctx) {
+        const messageText = ctx.message?.text
+        let username: string | null;
+        if (!messageText)
+            return null;
+
+        if (messageText.includes('@')) {
+            username = messageText.split('@')[1].split(' ')[0];
+            return username;
+        }
+
+        else 
+            return null;
+    }
+
+    findAll(ctx: MyContext = this.ctx) {
+        let telegramId: number | null;
+        let username: string | null;
+
+        telegramId = this.findIdFromEntity(ctx);
+
+        if (!telegramId)
+            telegramId = this.findIdToReplyMessage(ctx);
+
+            if (!telegramId)
+                telegramId = this.findIdOnText(ctx);
+
+        username = this.findUsernameOnMessage(ctx);
+
+        return username ?? telegramId ?? null;
+
+    }
 }
 
 export default FindEntityService;

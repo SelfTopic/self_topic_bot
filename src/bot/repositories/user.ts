@@ -48,8 +48,9 @@ export class UserRepository extends Repository {
                     eq(User.id, params.userId)
                 )
 
-            if (user.length > 0)
+            if (user.length)
                 return user[0];
+
         } else if (params.telegramId) {
             const user = await this.db.select()
                 .from(User).
@@ -57,19 +58,23 @@ export class UserRepository extends Repository {
                     eq(User.telegram_id, params.telegramId)
                 )
 
-            if (user.length > 0)
+            if (user.length)
                 return user[0];
+
         } else if (params.username) {
             const user = await this.db.select()
                 .from(User).
                 where(
                     eq(User.username, params.username)
                 )
+            console.log(`${user}`)
 
-            if (user.length > 0)
+            if (user.length)
                 return user[0];
         } else {
             throw new Error("Arguments not found")
         }
     }
 }
+
+export default UserRepository;

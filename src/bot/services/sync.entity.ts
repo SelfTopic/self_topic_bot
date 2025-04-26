@@ -14,6 +14,14 @@ export class SyncEntityService extends Service {
                     user.last_name,
                     user.username
                 )
+
+            if (ctx.chat?.type === "supergroup" || ctx.chat?.type === "group") {
+                await this.chatRepository.upsert(
+                    ctx.chat.id,
+                    ctx.chat.title,
+                    ctx.chat.username
+                )
+            }
             return true; 
 
         } else if (ctx.callbackQuery?.from) {
@@ -37,6 +45,11 @@ export class SyncEntityService extends Service {
                     user.username
                 )
             return true;
-        } else { return false }
+        } else { 
+            console.log("User not sync. Arguments not found");
+            return false 
+        }
     }
 }
+
+export default SyncEntityService;

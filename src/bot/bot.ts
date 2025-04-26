@@ -12,5 +12,5 @@ bot.use(LoggingMiddleware);
 bot.use(DatabaseMiddleware);
 bot.use(SyncEntityMiddleware);
 include(bot)
-
+console.log("Bot initialize")
 export default bot;
