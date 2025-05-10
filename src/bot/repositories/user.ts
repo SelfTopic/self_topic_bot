@@ -32,15 +32,19 @@ export class UserRepository extends Repository {
                 }
             )
             .returning()
+            // I'd rather using .single() or .limit(1) to get only object in user. 
+            // Because technically you have array of users and the var should be called users/
 
-        if (user.length < 1)
+        if (!user.length)
             throw new Error(`User by telegram_id=${telegramId} not found`)
 
         return user[0];
     }
 
     async get_data(params: FindUserRepositoryParams) {
-
+        // if you descruct params, code will be more clear 
+        // cosnt { userId, telegramId, username } = params;
+        // too much repeating and logic below, I recommend to refactor conditions.
         if (params.userId) {
             const user = await this.db.select()
                 .from(User).
