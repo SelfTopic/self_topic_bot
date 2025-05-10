@@ -19,7 +19,7 @@ banComposer.command("ban", async (ctx) => {
             })
 
         if (!user)
-            return await ctx.reply("User not found in database");
+            return await ctx.reply(`User by username=${entity} not found in database`);
 
         restrictUserId = user.telegram_id;
     }

@@ -11,6 +11,8 @@ changeRulesComposer.command("set_rules", async (ctx) => {
     if (!rules)
         return await ctx.reply(`Rules not found`);
 
+    
+
     await ctx.chatService.changeRules(
         ctx.chat.id,
         rules
