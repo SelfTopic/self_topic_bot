@@ -15,7 +15,7 @@ async function ModeratorMiddleware(
         if (ctx.chat!.type !== "supergroup")
             return await ctx.reply("This chat type don't supported");
 
-        if( member.status in ["administartor", "creator"] )
+        if( member.status === "administrator" || member.status === "creator" )
             await next();
     } catch {
         await ctx.reply("I is not administartor");
